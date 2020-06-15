@@ -1,0 +1,15 @@
+body {
+    background-image: url("img/maxresdefault.jpg");
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    counter-reset: count;
+}
+
+input[type="checkbox"]:checked {
+    counter-increment: count;
+}
+
+h1::after {
+    content: ' ' counter(count);
+}
