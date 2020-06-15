@@ -1,0 +1,68 @@
+@for $i from 1 through 6 {
+  @keyframes duck-move-#{$i} {
+    0% {
+      left: -55px;
+      top: random(75) + vh;
+    }
+    
+    50% {
+      left: 50%;
+      top: random(75) + vh;
+    }
+    
+    100% {
+      left: 105%;
+      top: random(75) + vh;
+    }
+  }
+}
+
+body {
+  background-image: url(img/maxresdefault.jpg);
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  counter-reset: count;
+  position: relative;
+}
+
+h1 {
+  position: absolute;
+  bottom: -16px;
+  left: 32px;
+}
+
+input[type="checkbox"] {
+  position: absolute;
+  visibility: hidden;
+  left: -9999px;
+}
+
+.duck-1 {
+  position: absolute;
+  animation: duck-move 10s linear 0s 1 both;
+}
+
+  @for $i from 1 through 6 {
+    .duck-#{$i} {
+      position: absolute;
+      animation: duck-move-#{$i} 10s linear #{$i}s 1 both;
+    }
+  }
+
+img {
+  width: 50px;
+}
+
+input[type="checkbox"]:checked {
+  counter-increment: count;
+}
+
+input[type="checkbox"]:checked + img {
+  visibility: hidden;
+  display: none;
+}
+
+h1::after {
+  content: ' ' counter(count);
+}
